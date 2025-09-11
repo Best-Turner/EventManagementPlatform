@@ -12,7 +12,7 @@ public class Event {
     private Long id;
     private String title;
     private String description;
-    private User user;
+    private User organizer;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
     private EventLocation location;
@@ -25,10 +25,10 @@ public class Event {
     public Event() {
     }
 
-    public Event(String title, String description, User user, LocalDateTime startDateTime, LocalDateTime endDateTime, EventLocation location, Integer capacity) {
+    public Event(String title, String description, User organizer, LocalDateTime startDateTime, LocalDateTime endDateTime, EventLocation location, Integer capacity) {
         this.title = title;
         this.description = description;
-        this.user = user;
+        this.organizer = organizer;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.location = location;
