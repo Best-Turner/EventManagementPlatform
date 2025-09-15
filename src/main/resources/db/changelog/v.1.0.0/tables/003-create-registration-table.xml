@@ -1,0 +1,44 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet id="create-registration-table" author="Aleksandr">
+        <createTable tableName="registration">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" referencedTableName="users" referencedColumnNames="id"
+                             foreignKeyName="fk_registration_user"/>
+            </column>
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false" referencedTableName="events" referencedColumnNames="id"
+                             foreignKeyName="fk_registration_event"/>
+            </column>
+            <column name="registration_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="registration_status" type="VARCHAR(50)">
+                <constraints nullable="false"
+                             checkConstraint="registration_status IN ('PENDING', 'CONFIRMED', 'CANCELLED', 'ATTENDED')"/>
+            </column>
+            <column name="notes" type="VARCHAR(150)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
+
+
+        <!--
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+            private User user;
+            private Event event;
+            private LocalDateTime registrationDate;
+            private RegistrationStatus status;
+            private String notes;-->
+
+

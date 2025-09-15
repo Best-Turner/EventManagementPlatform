@@ -35,8 +35,8 @@
         <createIndex tableName="users" indexName="idx_user_email">
             <column name="email"/>
         </createIndex>
-        <createIndex tableName="users" indexName="idx_user_email">
-            <column name="email"/>
+        <createIndex tableName="users" indexName="idx_user_username">
+            <column name="username"/>
         </createIndex>
     </changeSet>
 </databaseChangeLog>
