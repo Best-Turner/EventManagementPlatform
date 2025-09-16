@@ -1,9 +1,19 @@
 package com.example.eventmanagementplatform.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "events")
 public class Event {
@@ -12,33 +22,25 @@ public class Event {
     private Long id;
     private String title;
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "organizer_id")
     private User organizer;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
+    @Enumerated(EnumType.STRING)
     private EventLocation location;
     private String address;
+    @Enumerated(EnumType.STRING)
     private EventStatus status;
     private Integer capacity;
     private Integer availableSeats;
 
-
-    public Event() {
-    }
-
-    public Event(String title, String description, User organizer, LocalDateTime startDateTime, LocalDateTime endDateTime, EventLocation location, Integer capacity) {
-        this.title = title;
-        this.description = description;
-        this.organizer = organizer;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-        this.location = location;
-        this.capacity = capacity;
-    }
+    @OneToMany(mappedBy = "event")
+    private List<Registration> registrations = new ArrayList<>();
 
     public enum EventLocation {
         ONLINE, OFFLINE
     }
-
     public enum EventStatus {
         PLANNED, ONGOING, COMPLETED, CANCELLED
     }
