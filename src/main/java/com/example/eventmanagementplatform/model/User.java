@@ -34,6 +34,17 @@ public class User {
     private List<Registration> registrations = new ArrayList<>();
 
     public enum UserRole {
-        USER, ORGANIZER, ADMIN
+        USER("Пользователь"),
+        ORGANIZER("Организатор"),
+        ADMIN("Администратор");
+        private String displayName;
+
+        UserRole(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getRoleAsString() {
+            return displayName;
+        }
     }
 }
